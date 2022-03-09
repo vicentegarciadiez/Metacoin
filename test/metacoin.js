@@ -32,9 +32,6 @@ contract('MetaCoin', function(accounts) {
     var account_one = accounts[0];
     var account_two = accounts[1];
 
-    console.log("Account1 ", account_one);
-    console.log("Account2 ", account_two);
-
     var account_one_starting_balance;
     var account_two_starting_balance;
     var account_one_ending_balance;
@@ -50,11 +47,7 @@ contract('MetaCoin', function(accounts) {
       return meta.getBalance.call(account_two);
     }).then(function(balance) {
       account_two_starting_balance = parseInt(balance);
-
-      let transaction = meta.sendCoin(account_two, amount, {from: account_one});
-
-      console.log(transaction);
-      return transaction;
+      return meta.sendCoin(account_two, amount, {from: account_one});
     }).then(function() {
       return meta.getBalance.call(account_one);
     }).then(function(balance) {
